@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\Admin\SeatController;
+use App\Http\Controllers\Admin\TheaterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +39,13 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::view('/movies', 'admin.admin_movies')->name('movies');
     Route::view('/bookings', 'admin.admin_bookings')->name('bookings');
     Route::view('/users', 'admin.admin_users')->name('users');
-    Route::view('/theaters', 'admin.admin_theater')->name('theaters');
+    Route::get('/theaters', [TheaterController::class, 'index'])->name('theaters');
+    Route::post('/theaters', [TheaterController::class, 'store'])->name('theaters.store');
+    Route::put('/theaters/{theater}', [TheaterController::class, 'update'])->name('theaters.update');
+    Route::get('/theaters/{theater}/edit', [TheaterController::class, 'edit'])->name('theaters.edit');
+    Route::post('/theaters/{theater}/seats', [SeatController::class, 'store'])->name('seats.store');
+    Route::put('/seats/{seat}', [SeatController::class, 'update'])->name('seats.update');
+    Route::delete('/seats/{seat}', [SeatController::class, 'destroy'])->name('seats.destroy');
 });
 
 Route::middleware('auth')->group(function () {

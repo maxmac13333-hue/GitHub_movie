@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Seat extends Model
 {
-    protected $table = 'Seat';
+    protected $table = 'seat';
     protected $primaryKey = 'Seat_ID';
     public $timestamps = false;
 
