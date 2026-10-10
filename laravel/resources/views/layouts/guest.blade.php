@@ -1,30 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="csrf-token" content="{{ csrf_token() }}"><title>{{ request()->routeIs('register') ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ' }} · FF Cinema</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">@vite(['resources/css/app.css','resources/js/app.js'])</head>
+<body class="customer-page auth-page">
+ <div class="auth-shell">
+  <aside class="auth-showcase"><a class="brand" href="{{ route('movies.index') }}"><span class="brand-mark">FF<span>✦</span></span><span>FF<span class="brand-light">CINEMA</span></span></a><div class="auth-art"><img class="auth-poster ap-one" src="{{ asset('movies_png/interstellar.jpg') }}" alt="Interstellar"><img class="auth-poster ap-two" src="{{ asset('movies_png/dune-two.jpg') }}" alt="Dune: Part Two"><img class="auth-poster ap-three" src="{{ asset('movies_png/inside-out-two.jpg') }}" alt="Inside Out 2"><span class="auth-star">✦</span></div><div class="auth-caption"><span class="eyebrow">BIG SCREEN. BETTER MOMENTS.</span><h2>หนังดี ที่นั่งโปรด<br>และช่วงเวลาของคุณ</h2><p>จองง่าย เลือกที่นั่งได้เอง<br>ให้ทุกครั้งที่ดูหนังเป็นเรื่องพิเศษ</p></div><span class="auth-copyright">© {{ date('Y') }} FF Cinema</span></aside>
+  <main class="auth-main"><a href="{{ route('movies.index') }}" class="auth-back">← กลับไปเลือกภาพยนตร์</a><div class="auth-form">{{ $slot }}</div><p class="auth-footer">เลือกเรื่องที่ชอบ แล้วเจอกันที่ FF Cinema ✦</p></main>
+ </div>
+</body></html>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        
-        <div class="min-h-screen flex flex-col sm:justify-center items-center bg-gray-100">
-            <div>
-                <a href="/" aria-label="Home">
-                    <img src="{{ asset('Icons_png/logo.png') }}" alt="Logo" style="display: block; width: 200px; height: 200px; object-fit: contain;">
-                </a>
-            </div>
-            <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
-</html>

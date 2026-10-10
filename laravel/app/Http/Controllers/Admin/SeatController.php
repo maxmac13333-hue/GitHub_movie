@@ -21,8 +21,8 @@ class SeatController extends Controller
     public function store(Request $request, Theater $theater): RedirectResponse
     {
         $validated = $request->validate([
-            'pos_x' => ['required', 'integer', 'between:1,8'],
-            'pos_y' => ['required', 'integer', 'between:1,9'],
+            'pos_x' => ['required', 'integer', 'between:1,22'],
+            'pos_y' => ['required', 'integer', 'between:1,14'],
         ]);
 
         $created = DB::transaction(function () use ($theater, $validated) {
@@ -58,6 +58,9 @@ class SeatController extends Controller
 
     public function update(Request $request, Seat $seat): RedirectResponse
     {
+        if (DB::table('ticket')->where('Seat_ID', $seat->Seat_ID)->exists()) {
+            return back()->withErrors(['seat' => 'แก้ไขที่นั่งที่มีรายการจองไม่ได้']);
+        }
         $validated = $request->validate([
             'Seat_Type' => ['required', Rule::in(self::SEAT_TYPES)],
         ]);
@@ -91,3 +94,5 @@ class SeatController extends Controller
         return redirect()->route('admin.theaters.edit', $theaterId)->with('status', __('ลบที่นั่งแล้ว'));
     }
 }
+
+

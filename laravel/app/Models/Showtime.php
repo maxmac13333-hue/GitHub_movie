@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Showtime extends Model
 {
-    protected $table = 'Showtime';
+    protected $table = 'showtime';
     protected $primaryKey = 'Show_ID';
     public $timestamps = false;
+    protected $guarded = [];
+    public function tickets() { return $this->hasMany(Ticket::class, 'Show_ID', 'Show_ID'); }
+    public function bookings() { return $this->hasMany(Booking::class, 'Show_ID', 'Show_ID'); }
 
     // รอบฉายนี้ เป็นของหนังเรื่องไหน
     public function movie()

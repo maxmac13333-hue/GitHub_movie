@@ -29,6 +29,11 @@ return [
     */
 
     'disks' => [
+        'posters' => [
+            'driver' => 'local',
+            'root' => public_path('movies_png'),
+            'throw' => true,
+        ],
 
         'local' => [
             'driver' => 'local',

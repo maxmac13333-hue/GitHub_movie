@@ -1,37 +1,10 @@
 @extends('layouts.app')
-
-@section('title', __('จัดการภาพยนตร์'))
-@section('header')
-<div class="flex flex-wrap items-center justify-between gap-4">
-    <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('จัดการภาพยนตร์') }}
-    </h1>
-
-        @if (auth()->user()->is_admin)
-            <details class="relative">
-                <summary class="flex cursor-pointer list-none items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    {{ __('ผู้ดูแล') }}
-                    <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </summary>
-                <nav aria-label="เมนูผู้ดูแล" class="absolute right-0 z-50 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
-                    <a href="{{ route('admin.movies') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('จัดการภาพยนตร์') }}</a>
-                    <a href="{{ route('admin.bookings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('จัดการการจอง') }}</a>
-                    <a href="{{ route('admin.users') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('จัดการผู้ใช้') }}</a>
-                    <a href="{{ route('admin.theaters') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('จัดการโรงภาพยนตร์') }}</a>
-                </nav>
-            </details>
-        @endif
-</div>
-@endsection
-
+@section('title','จัดการภาพยนตร์')
+@section('header')<h1>จัดการภาพยนตร์</h1>@endsection
 @section('content')
-    <section class="py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white p-6 shadow-sm sm:rounded-lg text-gray-900">
-                {{ __('หน้านี้เตรียมไว้สำหรับพัฒนาต่อ') }}
-            </div>
-        </div>
-    </section>
+<div class="admin-stats"><div><span>ภาพยนตร์ทั้งหมด</span><strong>{{ \App\Models\Movie::count() }} <small>เรื่อง</small></strong></div><div><span>รอบฉายตั้งแต่วันนี้</span><strong>{{ \App\Models\Showtime::where('Show_Date','>=',today()->toDateString())->count() }} <small>รอบ</small></strong></div><div><span>โรงภาพยนตร์</span><strong>{{ \App\Models\Theater::count() }} <small>โรง</small></strong></div></div>
+<details class="cinema-panel admin-create" @if($errors->any() && !old('_method')) open @endif><summary>＋ เพิ่มภาพยนตร์ใหม่ <span>กรอกข้อมูลหนังที่ต้องการเปิดให้จอง</span></summary><form method="POST" enctype="multipart/form-data" action="{{ route('admin.movies.store') }}" class="admin-fields">@csrf @include('admin.movie-fields',['record'=>null])<button class="cinema-button">เพิ่มภาพยนตร์</button></form></details>
+<div class="admin-toolbar"><div><h2>คลังภาพยนตร์</h2><p>{{ $movies->count() }} เรื่องที่แสดง</p></div><form method="GET"><input class="cinema-input" name="q" value="{{ request('q') }}" placeholder="ค้นหาชื่อไทยหรืออังกฤษ..." aria-label="ค้นหาภาพยนตร์"><button class="cinema-button">ค้นหา</button>@if(request('q'))<a href="{{ route('admin.movies') }}">ล้าง</a>@endif</form></div>
+<div class="admin-movie-grid">@forelse($movies as $movie)<article class="cinema-panel admin-movie"><div class="admin-movie-summary"><img src="{{ $movie->poster_url }}" alt="{{ $movie->Title }}"><div><span class="admin-badge">{{ $movie->Genre ?: 'ยังไม่ระบุประเภท' }}</span><h2>{{ $movie->Title }}</h2><p>{{ $movie->Thai_Title }}</p><p>{{ $movie->Duration }} นาที · {{ $movie->showtimes_count }} รอบฉาย</p><a class="text-link" href="{{ route('admin.showtimes',['movie'=>$movie->Movie_ID]) }}">จัดการรอบฉาย ↗</a></div></div><details @if(old('_record') == $movie->Movie_ID) open @endif><summary>แก้ไขข้อมูลภาพยนตร์ <span>⌄</span></summary><form method="POST" enctype="multipart/form-data" action="{{ route('admin.movies.update',$movie) }}" class="admin-fields">@csrf @method('PUT')<input type="hidden" name="_record" value="{{ $movie->Movie_ID }}">@include('admin.movie-fields',['record'=>$movie])<button class="cinema-button">บันทึกการแก้ไข</button></form><form class="admin-delete" method="POST" action="{{ route('admin.movies.destroy',$movie) }}" onsubmit="return confirm('ยืนยันลบภาพยนตร์นี้?')">@csrf @method('DELETE')<button>ลบภาพยนตร์</button><span>ลบได้เมื่อไม่มีรอบฉาย</span></form></details></article>@empty<div class="cinema-panel p-8">ไม่พบภาพยนตร์ ลองค้นหาด้วยคำอื่น</div>@endforelse</div>
 @endsection
+

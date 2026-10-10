@@ -57,15 +57,15 @@
                     <div class="mb-7 rounded bg-gray-200 py-2 text-center text-xs font-semibold tracking-widest text-gray-600">
                         SCREEN / {{ __('จอภาพ') }}
                     </div>
-                    <div class="grid min-w-[420px] grid-cols-[28px_repeat(8,minmax(40px,1fr))] gap-x-2 gap-y-3">
+                    <div style="grid-template-columns:28px repeat({{ max(18,$selectedTheater->seats->max('pos_x')) }},minmax(40px,1fr))" class="grid min-w-[420px]  gap-x-2 gap-y-3">
                         <span></span>
-                        @for ($x = 1; $x <= 8; $x++)
+                        @for ($x = 1; $x <= max(18, $selectedTheater->seats->max('pos_x')); $x++)
                             <span class="pb-1 text-center text-xs font-semibold text-gray-500">{{ $x }}</span>
                         @endfor
 
-                        @for ($y = 1; $y <= 9; $y++)
+                        @for ($y = 1; $y <= max(12, $selectedTheater->seats->max('pos_y')); $y++)
                             <span class="flex items-center justify-center text-sm font-bold text-gray-700">{{ chr(64 + $y) }}</span>
-                            @for ($x = 1; $x <= 8; $x++)
+                            @for ($x = 1; $x <= max(18, $selectedTheater->seats->max('pos_x')); $x++)
                                 @php($seat = $seatMap->get($x . '-' . $y))
                                 @if ($seat)
                                     @php($isBooked = in_array((int) $seat->Seat_ID, $bookedSeatIds, true))
@@ -194,3 +194,4 @@
         </div>
     </section>
 @endsection
+

@@ -43,6 +43,26 @@ class AuthenticationTest extends TestCase
         $this->assertGuest();
     }
 
+    public function test_admin_login_and_dashboard_open_management(): void
+    {
+        $admin = User::factory()->create(['is_admin' => true]);
+        $this->withSession(['url.intended' => url('/movies')])->post('/login', [
+            'email' => $admin->email, 'password' => 'password',
+        ])->assertRedirect(route('admin.movies'));
+        $this->assertAuthenticatedAs($admin);
+        $this->get('/dashboard')->assertRedirect(route('admin.movies'));
+        $this->get(route('admin.movies'))->assertOk();
+    }
+
+    public function test_member_login_preserves_the_requested_page(): void
+    {
+        $member = User::factory()->create(['is_admin' => false]);
+        $this->withSession(['url.intended' => url('/booking-history')])->post('/login', [
+            'email' => $member->email, 'password' => 'password',
+        ])->assertRedirect(url('/booking-history'));
+        $this->get(route('admin.movies'))->assertForbidden();
+    }
+
     public function test_users_can_logout(): void
     {
         $user = User::factory()->create();

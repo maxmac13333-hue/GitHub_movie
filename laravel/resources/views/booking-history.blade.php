@@ -1,21 +1,8 @@
-@extends('layouts.app')
-
-@section('title', __('ประวัติการจอง'))
-
-@section('header')
-    <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('ประวัติการจอง') }}
-    </h1>
-@endsection
-
+@extends('layouts.customer')
+@section('title','การจองของฉัน')
 @section('content')
-    <section class="py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __('หน้านี้เตรียมไว้สำหรับประวัติการจอง') }}
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="wrap"><div class="breadcrumb"><a href="{{ route('movies.index') }}">หน้าแรก</a><span>›</span><span>การจองของฉัน</span></div><div class="section-title"><div><span class="eyebrow">YOUR MOVIE MOMENTS</span><h2>การจองของฉัน</h2></div><a class="btn btn-outline btn-small" href="{{ route('movies.index') }}">เลือกหนังเรื่องต่อไป ↗</a></div>
+<div class="history-list">@forelse($bookings as $booking)<article class="history-card"><img src="{{ $booking->showtime->movie->poster_url }}" alt="{{ $booking->showtime->movie->Title }}"><div class="history-copy"><span class="status-pill {{ $booking->Status==='ยกเลิก' ? 'cancelled' : '' }}">{{ $booking->payment_label }}</span><h2>{{ $booking->showtime->movie->Title }}</h2><p>{{ \Carbon\Carbon::parse($booking->showtime->Show_Date)->locale('th')->translatedFormat('j M Y') }} · {{ substr($booking->showtime->Show_Time,0,5) }} น. · {{ $booking->showtime->theater->Theater_Name }}</p><p>ที่นั่ง {{ $booking->Seat_Summary ?: '—' }} &nbsp; | &nbsp; เลขการจอง #{{ $booking->Booking_ID }}</p></div><div class="history-price"><strong>{{ number_format($booking->Total_Price) }} ฿</strong><a href="{{ route('bookings.show',$booking) }}">ดูบัตรการจอง →</a></div></article>
+@empty<div class="empty-state"><span class="empty-icon">▱</span><h3>หนังเรื่องแรกของคุณกำลังรออยู่</h3><p>เมื่อจองสำเร็จ บัตรและรายละเอียดจะอยู่ที่นี่</p><a class="btn" href="{{ route('movies.index') }}">เลือกภาพยนตร์ →</a></div>@endforelse</div><div class="mt-6">{{ $bookings->links() }}</div></div>
 @endsection
+

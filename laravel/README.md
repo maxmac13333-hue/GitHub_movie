@@ -1,66 +1,50 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Cinema Booking (Laravel 10)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+เว็บจองตั๋วภาพยนตร์ตามขอบเขตงาน: สมัครสมาชิก/เข้าสู่ระบบ, ดูหนังและรอบฉาย, ดูที่นั่งว่าง, จองและดูบัตร, ประวัติและยกเลิกการจอง; ผู้ดูแลจัดการหนัง โรงและที่นั่ง รอบฉาย และดูรายการจอง/ผู้ใช้
 
-## About Laravel
+## ใช้ฐานข้อมูลอะไร
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**ใช้ MySQL หรือ MariaDB ผ่าน phpMyAdmin ได้** phpMyAdmin เป็นหน้าจอจัดการฐานข้อมูล ไม่ใช่ตัวฐานข้อมูลเอง. Laravel Herd เป็นตัวรัน PHP/เว็บในเครื่อง; ต้องมี MySQL/MariaDB server เพิ่ม เช่น MySQL ที่ติดมากับ XAMPP. SQLite ใช้ได้สำหรับการทดสอบ แต่ไม่จำเป็นสำหรับโปรเจกต์นี้.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## เริ่มใช้งานบน Herd
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. ติดตั้ง PHP 8.1+, Composer, Node.js และ MySQL/MariaDB. ใน Herd ให้ใช้ PHP ที่เปิดส่วนขยาย pdo_mysql และ zip.
+2. สร้างฐานข้อมูลชื่อ movie_db ใน phpMyAdmin (Collation: utf8mb4_unicode_ci). ถ้าต้องการเก็บข้อมูลเดิม ให้ import ไฟล์ movie_db.sql ที่อยู่เหนือโฟลเดอร์นี้ **ก่อน** รัน migration. อย่า import ทับฐานข้อมูลที่มีข้อมูลใหม่แล้ว.
+3. รัน composer install และ npm ci.
+4. คัดลอก .env.example เป็น .env, ตั้ง APP_URL ตามโดเมน Herd และค่า DB_DATABASE=movie_db, DB_USERNAME, DB_PASSWORD ตาม MySQL ของเครื่อง.
+5. รัน php artisan key:generate
+6. รัน php artisan migrate เพื่อสร้าง/ปรับตารางจาก SQL เดิม. หากเป็นฐานข้อมูลว่าง ใช้ php artisan migrate --seed เพื่อสร้างหนัง โรง ที่นั่ง และรอบฉายตัวอย่าง. หาก import SQL เดิมแล้ว ใช้ php artisan db:seed เพื่อเพิ่มรอบฉายในอนาคต (ข้อมูลเดิมมีแต่รอบที่ผ่านมา).
+7. รัน npm run build แล้วเปิดเว็บไซต์ผ่านโดเมน Herd. ในช่วงพัฒนาใช้ npm run dev แทน build.
+8. สมัครสมาชิกผ่านหน้าเว็บ แล้วรัน php artisan cinema:make-admin your@email.com เพื่อให้บัญชีนั้นเป็นผู้ดูแล จากนั้นออกและเข้าสู่ระบบใหม่ด้วยรหัสผ่านที่สมัครไว้. หากนำเข้าบัญชีผู้ดูแลเดิมจาก SQL แต่ไม่ทราบรหัส ให้รัน php artisan cinema:make-admin your@email.com --reset-password แล้วตั้งรหัสใหม่ใน terminal (ตัวอักษรจะไม่แสดงบนหน้าจอ). อย่าเผยแพร่บัญชีและรหัสผ่านที่มากับไฟล์ SQL.
 
-## Learning Laravel
+## ตรวจฐานข้อมูลเดิม
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ไฟล์ SQL เดิมมี movie, theater, seat, showtime, booking, ticket, users และตารางของ Laravel. จุดที่ต้องแก้มีดังนี้:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- booking หมายเลข 2 ไม่มี ticket จึงมีราคาแต่ไม่มีที่นั่ง. ต้องตรวจสอบรายการนี้กับข้อมูลจริงก่อนแก้/คืนเงิน. UI จะแสดงเครื่องหมาย —.
+- รอบฉายตัวอย่างทั้งหมดเป็นวันที่ 10–11 มิถุนายน 2026 ซึ่งผ่านไปแล้ว; ระบบจะไม่ให้จองรอบอดีต.
+- มีที่นั่งเฉพาะโรง 1; โรง 2 และ 3 ไม่มีที่นั่งให้เลือก. เพิ่มผ่านหน้าผู้ดูแล.
+- เดิม ticket ไม่มี Show_ID และไม่มี unique constraint (Show_ID, Seat_ID) จึงกันขายที่นั่งซ้ำต่อรอบด้วยฐานข้อมูลไม่ได้. migration เติมคอลัมน์และข้อบังคับนี้; โค้ดจองตรวจซ้ำใน transaction อีกชั้น.
+- โค้ดเดิมใช้ชื่อตารางตัวพิมพ์ใหญ่ Movie, Showtime, Booking ซึ่งผิดจาก SQL (movie, showtime, booking) บนระบบที่แยกตัวพิมพ์ใหญ่เล็ก.
+- ไฟล์ SQL ไม่มี migration สำหรับตารางโรงภาพยนตร์ จึงสร้างฐานข้อมูลใหม่ด้วย artisan migrate อย่างเดียวไม่ได้; migration ใหม่แก้แล้ว.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+การจองในโปรเจกต์นี้เป็น **การยืนยันการจอง** ยังไม่มีการเชื่อมระบบชำระเงินจริง. ราคาเป็นราคาแต่ละประเภทที่นั่งในข้อมูลฐานเดิม.
 
-## Laravel Sponsors
+## Deploy
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+นำโค้ดขึ้นโฮสต์ที่รองรับ PHP 8.1+, Composer และ MySQL/MariaDB โดยชี้ document root ไปที่ public/. ตั้ง .env ใหม่บนเซิร์ฟเวอร์ (APP_ENV=production, APP_DEBUG=false, APP_URL, ค่า DB), รัน composer install --no-dev --optimize-autoloader, php artisan key:generate เฉพาะการติดตั้งใหม่, php artisan migrate --force, npm ci && npm run build ในขั้น build และตั้งสิทธิ์เขียนให้ storage/ กับ bootstrap/cache/. สำรองฐานข้อมูลก่อน migration บนระบบที่มีข้อมูลจริง. ห้ามนำ .env หรือไฟล์ SQL ที่มีบัญชีตัวอย่างขึ้น public.
 
-### Premium Partners
+## แคตตาล็อก SKY Cinema
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+รัน `php artisan migrate` แล้ว `php artisan db:seed --class=CinemaCatalogSeeder` เพื่อเพิ่มหนัง 10 เรื่อง, SKY Hall 01–06 โรงละ 210 ที่นั่ง และตารางฉาย 7 วัน (168 รอบใหม่). Seeder เพิ่มที่นั่งให้โรงเดิมโดยเก็บที่นั่งและการจองเดิมไว้ และตรวจเวลาทับซ้อนรวมพักโรง 20 นาที. รันซ้ำได้เพื่อเติมรอบฉายจากวันที่ปัจจุบันโดยไม่สร้างรอบซ้ำ.
 
-## Contributing
+หน้า `/movies` เปิดดูและค้นหาชื่อไทย/อังกฤษหรือผู้กำกับได้ พร้อมตัวกรองประเภทและวันที่. ต้องเข้าสู่ระบบก่อนเลือกที่นั่งและจอง. ระบบอัปเดตสถานะที่นั่งทุก 15 วินาที และตรวจการจองซ้ำที่เซิร์ฟเวอร์อีกครั้ง.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+ข้อมูลภาพยนตร์และ URL ต้นทางโปสเตอร์อยู่ใน `database/data/movies.json`; ภาพอยู่ใน `public/movies_png`. ตารางฉายเป็นข้อมูลตัวอย่างสำหรับโปรเจกต์ ไม่ใช่ตารางฉายของโรงภาพยนตร์จริง. โปสเตอร์เป็นผลงานของเจ้าของภาพยนตร์แต่ละเรื่อง.
 
-## Code of Conduct
+## FF Cinema — การตั้งค่าโรงล่าสุด
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ชื่อแอปคือ FF Cinema มีโรง 1–8 ที่เซ็นทรัล ขอนแก่นทั้งหมด: โรง 1 เป็น IMAX (ผัง 22 คอลัมน์ 14 แถว ใหญ่ที่สุด), โรง 2 เป็น 3D และโรง 3–8 เป็น 2D. Migration วันที่ 11 ตุลาคม 2026 รวมโรงตัวอย่างที่เกินมาโดยตรวจรอบฉายไม่ทับซ้อนและไม่ย้ายโรงที่มีการจอง. ข้อมูลเก่าและที่นั่งเดิมถูกเก็บไว้ จึงอาจมีจำนวนที่นั่งมากกว่าผังเริ่มต้นเล็กน้อย. Seeder ใหม่ใช้โรงทั้ง 8 โรงและเติมรอบฉายล่วงหน้า 7 วัน.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ชำระเงินจำลอง
+การจองใหม่สำรองที่นั่ง 10 นาทีโดยอ้างอิงเวลาจากเซิร์ฟเวอร์ แนบรูป JPG/PNG/WebP ไม่เกิน 2 MB เพื่อยืนยันการชำระจำลองทันที ไม่มีการโอนเงินจริงหรือการตรวจธนาคาร. สลิปเก็บใน storage/app/payment-slips และเปิดผ่านเส้นทางที่ตรวจสิทธิ์เจ้าของหรือผู้ดูแลเท่านั้น. รายการหมดเวลาถูกยกเลิกและคืนที่นั่งก่อนประมวลผลคำขอเว็บถัดไป รวมถึงการอัปเดตผังทุก 15 วินาที. หน้าชำระจะรีโหลดเมื่อครบกำหนด. การจองก่อนเพิ่มระบบนี้ยังใช้เงื่อนไขเดิม.

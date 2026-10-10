@@ -9,6 +9,9 @@ class Theater extends Model
     protected $table = 'theater';
     protected $primaryKey = 'Theater_ID';
     public $timestamps = false;
+    protected $guarded = [];
+
+    public function getFormatAttribute(): string { return match ((int) $this->Theater_ID) { 1 => 'IMAX', 2 => '3D', default => '2D' }; }
 
     // 1 โรง มีหลายที่นั่ง
     public function seats()
@@ -22,3 +25,4 @@ class Theater extends Model
         return $this->hasMany(Showtime::class, 'Theater_ID', 'Theater_ID');
     }
 }
+

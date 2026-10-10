@@ -86,7 +86,7 @@
                             @forelse ($theaters as $theater)
                                 <tr>
                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{{ $theater->Theater_ID }}</td>
-                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">{{ $theater->Theater_Name }}</td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">{{ $theater->Theater_Name }} ({{ $theater->format }})</td>
                                     <td class="px-6 py-4 text-sm text-gray-600">{{ $theater->Theater_Location }}</td>
                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-600">{{ $theater->seats_count }}</td>
                                     <td class="whitespace-nowrap px-6 py-4 text-sm space-x-3">
@@ -140,3 +140,4 @@
         </div>
     </section>
 @endsection
+

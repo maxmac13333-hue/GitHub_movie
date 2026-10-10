@@ -1,0 +1,122 @@
+[
+  {
+    "Title": "Avatar: The Way of Water",
+    "Thai_Title": "อวตาร วิถีแห่งสายน้ำ",
+    "page": "Avatar:_The_Way_of_Water",
+    "Duration": 192,
+    "Genre": "ไซไฟ / ผจญภัย",
+    "Director": "James Cameron",
+    "Synopsis": "เจคและเนย์ทีรีพาครอบครัวออกเดินทางสู่โลกใต้สมุทรของแพนดอรา เพื่อปกป้องบ้านและคนที่พวกเขารัก",
+    "Release_Date": "2022-12-14",
+    "Poster": "avatar-water.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/5/54/Avatar_The_Way_of_Water_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Dune: Part Two",
+    "Thai_Title": "ดูน ภาคสอง",
+    "page": "Dune:_Part_Two",
+    "Duration": 166,
+    "Genre": "ไซไฟ / ผจญภัย",
+    "Director": "Denis Villeneuve",
+    "Synopsis": "พอล อะเทรดีสร่วมเดินทางกับชานีและชาวเฟรเมน ท่ามกลางทะเลทรายอาร์ราคิสและทางเลือกที่จะเปลี่ยนอนาคตของจักรวาล",
+    "Release_Date": "2024-02-28",
+    "Poster": "dune-two.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Interstellar",
+    "Thai_Title": "ทะยานดาวกู้โลก",
+    "page": "Interstellar_(film)",
+    "Duration": 169,
+    "Genre": "ไซไฟ / ดราม่า",
+    "Director": "Christopher Nolan",
+    "Synopsis": "ทีมสำรวจเดินทางผ่านรูหนอนเพื่อค้นหาบ้านใหม่ให้มนุษยชาติ เรื่องราวของเวลา ความหวัง และสายสัมพันธ์ระหว่างพ่อกับลูก",
+    "Release_Date": "2014-11-05",
+    "Poster": "interstellar.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Inside Out 2",
+    "Thai_Title": "มหัศจรรย์อารมณ์อลเวง 2",
+    "page": "Inside_Out_2",
+    "Duration": 96,
+    "Genre": "แอนิเมชัน / ครอบครัว",
+    "Director": "Kelsey Mann",
+    "Synopsis": "ไรลีย์ก้าวเข้าสู่วัยรุ่น เมื่ออารมณ์ชุดใหม่เข้ามาในศูนย์บัญชาการ ลั้ลลาและเพื่อน ๆ ต้องเรียนรู้ที่จะเติบโตไปด้วยกัน",
+    "Release_Date": "2024-06-12",
+    "Poster": "inside-out-two.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Spider-Man: Across the Spider-Verse",
+    "Thai_Title": "สไปเดอร์แมน ผงาดข้ามจักรวาลแมงมุม",
+    "page": "Spider-Man:_Across_the_Spider-Verse",
+    "Duration": 140,
+    "Genre": "แอนิเมชัน / แอ็กชัน",
+    "Director": "Joaquim Dos Santos",
+    "Synopsis": "ไมลส์ โมราเลสเดินทางข้ามพหุจักรวาล พบเหล่าสไปเดอร์ฮีโร่ และต้องค้นหาความหมายของการเป็นฮีโร่ในแบบของตัวเอง",
+    "Release_Date": "2023-05-31",
+    "Poster": "spider-verse.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/b/b4/Spider-Man-_Across_the_Spider-Verse_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Oppenheimer",
+    "Thai_Title": "ออพเพนไฮเมอร์",
+    "page": "Oppenheimer_(film)",
+    "Duration": 180,
+    "Genre": "ดราม่า / ประวัติศาสตร์",
+    "Director": "Christopher Nolan",
+    "Synopsis": "เรื่องราวของเจ. โรเบิร์ต ออพเพนไฮเมอร์ นักฟิสิกส์ผู้นำโครงการที่เปลี่ยนโลก พร้อมคำถามถึงผลของการค้นพบทางวิทยาศาสตร์",
+    "Release_Date": "2023-07-19",
+    "Poster": "oppenheimer.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Barbie",
+    "Thai_Title": "บาร์บี้",
+    "page": "Barbie_(film)",
+    "Duration": 114,
+    "Genre": "คอมเมดี้ / แฟนตาซี",
+    "Director": "Greta Gerwig",
+    "Synopsis": "บาร์บี้และเคนออกจากบาร์บี้แลนด์สู่โลกจริง การเดินทางที่เต็มไปด้วยสีสันทำให้ทั้งคู่ค้นพบตัวตนและความหมายของความสมบูรณ์แบบ",
+    "Release_Date": "2023-07-19",
+    "Poster": "barbie.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/0/0b/Barbie_2023_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Top Gun: Maverick",
+    "Thai_Title": "ท็อปกัน มาเวอริค",
+    "page": "Top_Gun:_Maverick",
+    "Duration": 130,
+    "Genre": "แอ็กชัน / ดราม่า",
+    "Director": "Joseph Kosinski",
+    "Synopsis": "มาเวอริคกลับมาฝึกนักบินรุ่นใหม่สำหรับภารกิจที่แทบเป็นไปไม่ได้ และเผชิญหน้ากับอดีตที่ยังคงติดตามเขา",
+    "Release_Date": "2022-05-25",
+    "Poster": "top-gun.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/1/13/Top_Gun_Maverick_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "The Wild Robot",
+    "Thai_Title": "หุ่นยนต์ผจญภัยในป่ากว้าง",
+    "page": "The_Wild_Robot",
+    "Duration": 102,
+    "Genre": "แอนิเมชัน / ครอบครัว",
+    "Director": "Chris Sanders",
+    "Synopsis": "รอซ หุ่นยนต์ที่ติดอยู่บนเกาะร้าง เรียนรู้ภาษาแห่งธรรมชาติและมิตรภาพ เมื่อเธอกลายเป็นผู้ดูแลลูกห่านตัวหนึ่ง",
+    "Release_Date": "2024-09-25",
+    "Poster": "wild-robot.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/7/70/The_Wild_Robot_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  },
+  {
+    "Title": "Suzume",
+    "Thai_Title": "การผนึกประตูของซุซุเมะ",
+    "page": "Suzume",
+    "Duration": 122,
+    "Genre": "แอนิเมชัน / แฟนตาซี",
+    "Director": "Makoto Shinkai",
+    "Synopsis": "ซุซุเมะออกเดินทางทั่วญี่ปุ่นเพื่อปิดประตูปริศนาที่นำภัยพิบัติมาสู่โลก และค้นหาคำตอบของความทรงจำในวัยเด็ก",
+    "Release_Date": "2022-11-11",
+    "Poster": "suzume.jpg",
+    "Poster_Source": "https://upload.wikimedia.org/wikipedia/en/7/7f/Suzume_no_Tojimari_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+  }
+]
