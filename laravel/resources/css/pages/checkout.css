@@ -1,0 +1,47 @@
+.checkout-layout {
+    max-width: 840px;
+    margin: 0 auto;
+}
+.review-panel {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+.review-panel h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+.review-list {
+    margin: 20px 0;
+}
+.review-list > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf1f7;
+    font-size: 13px;
+}
+.payment-note {
+    display: flex;
+    gap: 12px;
+    padding: 17px;
+    background: #eff6ff;
+    border: 1px solid #dceafc;
+    border-radius: 10px;
+    color: #587ca9;
+    font-size: 11px;
+    margin: 20px 0;
+}
+.review-panel .btn {
+    width: 100%;
+}
+@media (max-width: 560px) {
+    .review-panel {
+        padding: 22px;
+    }
+    .review-list > div {
+        font-size: 11px;
+    }
+}

@@ -1,3 +1,103 @@
-<nav x-data="{open:false}" class="border-b border-white/10 bg-[#0d1423]"><div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4"><a href="{{ route('dashboard') }}" class="text-xl font-black tracking-wide text-amber-300">CINEMA<span class="text-white">.</span></a><div class="hidden flex-wrap items-center gap-6 text-sm md:flex"><a href="{{ route('dashboard') }}" class="hover:text-amber-300">หน้าแรก</a><a href="{{ route('movies.index') }}" class="hover:text-amber-300">ภาพยนตร์</a><a href="{{ route('booking-history.index') }}" class="hover:text-amber-300">ประวัติการจอง</a>@if(auth()->user()->is_admin)<a href="{{ route('admin.movies') }}" class="text-amber-300">ผู้ดูแล</a>@endif</div><div class="hidden items-center gap-4 text-sm md:flex"><a href="{{ route('profile.edit') }}" class="text-slate-300">{{ auth()->user()->name }}</a><form method="POST" action="{{ route('logout') }}">@csrf<button class="text-slate-400 hover:text-white">ออกจากระบบ</button></form></div><button class="md:hidden" @click="open=!open" aria-label="เปิดเมนู">☰</button></div>
-<div x-show="open" x-cloak class="space-y-3 border-t border-white/10 px-4 py-4 text-sm md:hidden"><a class="block" href="{{ route('dashboard') }}">หน้าแรก</a><a class="block" href="{{ route('movies.index') }}">ภาพยนตร์</a><a class="block" href="{{ route('booking-history.index') }}">ประวัติการจอง</a>@if(auth()->user()->is_admin)<a class="block" href="{{ route('admin.movies') }}">ผู้ดูแล</a>@endif<a class="block" href="{{ route('profile.edit') }}">โปรไฟล์</a><form method="POST" action="{{ route('logout') }}">@csrf<button>ออกจากระบบ</button></form></div>
-@if(auth()->user()->is_admin)<div class="border-t border-white/10"><div class="mx-auto flex max-w-7xl gap-5 overflow-x-auto px-4 py-3 text-xs text-slate-300"><a href="{{ route('admin.movies') }}">ภาพยนตร์</a><a href="{{ route('admin.showtimes') }}">รอบฉาย</a><a href="{{ route('admin.theaters') }}">โรงและที่นั่ง</a><a href="{{ route('admin.bookings') }}">การจอง</a><a href="{{ route('admin.users') }}">ผู้ใช้งาน</a></div></div>@endif</nav>
+<nav
+    x-data="{ open: false }"
+    class="border-b border-white/10 bg-[#0d1423]"
+>
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
+        <a
+            href="{{ route('dashboard') }}"
+            class="text-xl font-black tracking-wide text-amber-300"
+        >
+            CINEMA<span class="text-white">.</span>
+        </a>
+
+        <div class="hidden flex-wrap items-center gap-6 text-sm md:flex">
+            <a
+                href="{{ route('dashboard') }}"
+                class="hover:text-amber-300"
+            >หน้าแรก</a>
+            <a
+                href="{{ route('movies.index') }}"
+                class="hover:text-amber-300"
+            >ภาพยนตร์</a>
+            <a
+                href="{{ route('booking-history.index') }}"
+                class="hover:text-amber-300"
+            >ประวัติการจอง</a>
+            @if (auth()->user()->is_admin)
+                <a
+                    href="{{ route('admin.movies') }}"
+                    class="text-amber-300"
+                >ผู้ดูแล</a>
+            @endif
+        </div>
+
+        <div class="hidden items-center gap-4 text-sm md:flex">
+            <a
+                href="{{ route('profile.edit') }}"
+                class="text-slate-300"
+            >{{ auth()->user()->name }}</a>
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+            >
+                @csrf
+                <button class="text-slate-400 hover:text-white">ออกจากระบบ</button>
+            </form>
+        </div>
+
+        <button
+            type="button"
+            class="md:hidden"
+            @click="open = !open"
+            aria-label="เปิดเมนู"
+        >☰</button>
+    </div>
+
+    <div
+        x-show="open"
+        x-cloak
+        class="space-y-3 border-t border-white/10 px-4 py-4 text-sm md:hidden"
+    >
+        <a
+            class="block"
+            href="{{ route('dashboard') }}"
+        >หน้าแรก</a>
+        <a
+            class="block"
+            href="{{ route('movies.index') }}"
+        >ภาพยนตร์</a>
+        <a
+            class="block"
+            href="{{ route('booking-history.index') }}"
+        >ประวัติการจอง</a>
+        @if (auth()->user()->is_admin)
+            <a
+                class="block"
+                href="{{ route('admin.movies') }}"
+            >ผู้ดูแล</a>
+        @endif
+        <a
+            class="block"
+            href="{{ route('profile.edit') }}"
+        >โปรไฟล์</a>
+        <form
+            method="POST"
+            action="{{ route('logout') }}"
+        >
+            @csrf
+            <button>ออกจากระบบ</button>
+        </form>
+    </div>
+
+    @if (auth()->user()->is_admin)
+        <div class="border-t border-white/10">
+            <div class="mx-auto flex max-w-7xl gap-5 overflow-x-auto px-4 py-3 text-xs text-slate-300">
+                <a href="{{ route('admin.movies') }}">ภาพยนตร์</a>
+                <a href="{{ route('admin.showtimes') }}">รอบฉาย</a>
+                <a href="{{ route('admin.theaters') }}">โรงและที่นั่ง</a>
+                <a href="{{ route('admin.bookings') }}">การจอง</a>
+                <a href="{{ route('admin.users') }}">ผู้ใช้งาน</a>
+            </div>
+        </div>
+    @endif
+</nav>
