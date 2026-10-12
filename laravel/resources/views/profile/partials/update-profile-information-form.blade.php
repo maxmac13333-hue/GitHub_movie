@@ -9,35 +9,69 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form
+        id="send-verification"
+        method="post"
+        action="{{ route('verification.send') }}"
+    >
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form
+        method="post"
+        action="{{ route('profile.update') }}"
+        class="mt-6 space-y-6"
+    >
         @csrf
         @method('patch')
 
         <div>
-            <label for="name" class="block font-medium text-sm text-gray-700">{{ __('Name') }}</label>
-            <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required autofocus autocomplete="name">
+            <label
+                for="name"
+                class="block font-medium text-sm text-gray-700"
+            >{{ __('Name') }}</label>
+            <input
+                id="name"
+                name="name"
+                type="text"
+                value="{{ old('name', $user->name) }}"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                required
+                autofocus
+                autocomplete="name"
+            >
             @foreach ($errors->get('name') as $message)
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @endforeach
         </div>
 
         <div>
-            <label for="email" class="block font-medium text-sm text-gray-700">{{ __('Email') }}</label>
-            <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required autocomplete="username">
+            <label
+                for="email"
+                class="block font-medium text-sm text-gray-700"
+            >{{ __('Email') }}</label>
+            <input
+                id="email"
+                name="email"
+                type="email"
+                value="{{ old('email', $user->email) }}"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                required
+                autocomplete="username"
+            >
             @foreach ($errors->get('email') as $message)
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @endforeach
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button
+                            form="send-verification"
+                            class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
@@ -52,7 +86,10 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button type="submit" class="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">{{ __('Save') }}</button>
+            <button
+                type="submit"
+                class="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >{{ __('Save') }}</button>
 
             @if (session('status') === 'profile-updated')
                 <p

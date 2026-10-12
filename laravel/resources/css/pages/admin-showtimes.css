@@ -1,0 +1,30 @@
+.admin-show-summary {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.admin-show-summary strong {
+    display: block;
+}
+.admin-show-summary small {
+    display: block;
+    color: #8594a9;
+    margin-top: 5px;
+}
+.admin-show-summary > span {
+    color: #2467e8;
+    font-size: 12px;
+}
+.admin-page details[open] > .admin-show-summary {
+    margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+    .admin-show-summary {
+        align-items: start;
+    }
+    .admin-show-summary strong {
+        font-size: 13px;
+    }
+}

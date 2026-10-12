@@ -1,1 +1,69 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cinema Booking</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">@vite(['resources/css/app.css','resources/js/app.js'])</head><body class="min-h-screen bg-[#0a0f1c] text-white"><nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-6"><strong class="text-xl text-amber-300">CINEMA.</strong><div class="flex gap-4 text-sm"><a href="{{ route('login') }}" class="px-3 py-2">เข้าสู่ระบบ</a><a href="{{ route('register') }}" class="rounded-xl bg-amber-400 px-4 py-2 font-bold text-slate-950">สมัครสมาชิก</a></div></nav><main class="mx-auto grid min-h-[75vh] max-w-6xl items-center gap-10 px-5 py-12 md:grid-cols-2"><div><p class="text-sm font-bold uppercase tracking-[.3em] text-amber-300">YOUR MOVIE STARTS HERE</p><h1 class="mt-5 text-5xl font-black leading-tight md:text-6xl">ค่ำคืนนี้<br><span class="text-amber-300">มีหนังเรื่องโปรด</span></h1><p class="mt-6 max-w-lg text-lg text-slate-400">เลือกภาพยนตร์ รอบฉาย และที่นั่งที่ชอบ แล้วรับบัตรจองของคุณได้ทันที</p><div class="mt-9 flex flex-wrap gap-3"><a href="{{ route('register') }}" class="cinema-button">เริ่มจองที่นั่ง →</a><a href="{{ route('login') }}" class="rounded-xl border border-white/20 px-5 py-3 font-semibold">มีบัญชีแล้ว</a></div></div><div class="relative mx-auto w-full max-w-md"><div class="absolute -inset-6 rounded-full bg-amber-400/10 blur-3xl"></div><div class="cinema-panel relative overflow-hidden p-5"><img src="{{ asset('movies_png/Avatar_The_Way_of_Water.png') }}" alt="ตัวอย่างโปสเตอร์ภาพยนตร์" class="h-96 w-full rounded-xl object-cover"><div class="p-3"><p class="text-sm text-amber-300">NOW SHOWING</p><p class="mt-1 text-2xl font-bold">ที่นั่งที่ดีที่สุด รอคุณอยู่</p></div></div></div></main></body></html>
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+    <title>Cinema Booking</title>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="min-h-screen bg-[#0a0f1c] text-white">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-6"><strong
+            class="text-xl text-amber-300">CINEMA.</strong>
+        <div class="flex gap-4 text-sm"><a
+                href="{{ route('login') }}"
+                class="px-3 py-2"
+            >เข้าสู่ระบบ</a><a
+                href="{{ route('register') }}"
+                class="rounded-xl bg-amber-400 px-4 py-2 font-bold text-slate-950"
+            >สมัครสมาชิก</a></div>
+    </nav>
+    <main class="mx-auto grid min-h-[75vh] max-w-6xl items-center gap-10 px-5 py-12 md:grid-cols-2">
+        <div>
+            <p class="text-sm font-bold uppercase tracking-[.3em] text-amber-300">YOUR MOVIE STARTS HERE</p>
+            <h1 class="mt-5 text-5xl font-black leading-tight md:text-6xl">ค่ำคืนนี้<br><span
+                    class="text-amber-300">มีหนังเรื่องโปรด</span></h1>
+            <p class="mt-6 max-w-lg text-lg text-slate-400">เลือกภาพยนตร์ รอบฉาย และที่นั่งที่ชอบ
+                แล้วรับบัตรจองของคุณได้ทันที</p>
+            <div class="mt-9 flex flex-wrap gap-3"><a
+                    href="{{ route('register') }}"
+                    class="cinema-button"
+                >เริ่มจองที่นั่ง →</a><a
+                    href="{{ route('login') }}"
+                    class="rounded-xl border border-white/20 px-5 py-3 font-semibold"
+                >มีบัญชีแล้ว</a></div>
+        </div>
+        <div class="relative mx-auto w-full max-w-md">
+            <div class="absolute -inset-6 rounded-full bg-amber-400/10 blur-3xl"></div>
+            <div class="cinema-panel relative overflow-hidden p-5"><img
+                    src="{{ asset('movies_png/Avatar_The_Way_of_Water.png') }}"
+                    alt="ตัวอย่างโปสเตอร์ภาพยนตร์"
+                    class="h-96 w-full rounded-xl object-cover"
+                >
+                <div class="p-3">
+                    <p class="text-sm text-amber-300">NOW SHOWING</p>
+                    <p class="mt-1 text-2xl font-bold">ที่นั่งที่ดีที่สุด รอคุณอยู่</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

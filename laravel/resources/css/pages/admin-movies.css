@@ -1,0 +1,58 @@
+.admin-movie-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+.admin-movie-summary {
+    padding: 22px;
+    display: flex;
+    gap: 18px;
+}
+.admin-movie-summary img {
+    width: 85px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 8px;
+    align-self: start;
+}
+.admin-movie-summary h2 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 9px 0 3px;
+}
+.admin-movie-summary p {
+    font-size: 11px;
+    color: #8594a9;
+    margin-bottom: 7px;
+}
+.admin-movie-summary .text-link {
+    font-size: 11px;
+}
+.admin-delete {
+    padding: 0 22px 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.admin-delete button {
+    color: #d65366;
+    font-size: 11px;
+}
+.admin-delete span {
+    color: #9aa7b9;
+    font-size: 10px;
+}
+@media (max-width: 1100px) {
+    .admin-movie-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 700px) {
+    .admin-movie-summary {
+        padding: 18px;
+    }
+    .admin-movie-summary img {
+        width: 70px;
+    }
+}
